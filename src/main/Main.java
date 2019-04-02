@@ -1,8 +1,7 @@
-package sample;
+package main;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-
 import javax.swing.*;
 import java.awt.*;
 

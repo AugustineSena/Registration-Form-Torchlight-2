@@ -1,4 +1,4 @@
-package sample;
+package main;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -29,122 +29,60 @@ public class RegistrationForm extends JFrame {
      */
     //private ImageIcon titleIcon;
     private boolean exceptionIndicator=false;
+    private Character charSelected;
+    private Character.Gender charGender;
     public RegistrationForm()  {
-        super("Torchlight 2 - Register - \u00a9 2016 - 311410001 - Augustine Sena,Inc");
+        super("Torchlight 2 - Register - \u00a9 2016 - 2019 by Augustine Sena,Inc");
         setIcon();
-        charSelected = Character.Outlander_Male;
-
-        //setLayout(new BorderLayout());
+        charSelected = Character.Outlander;
         setContentPane(new JLabel(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("background_full.jpg")))));
-        //setContentPane(new JLabel (/*new Color(21, 21, 21, 255)*/));
         setLayout(new FlowLayout());
-
-        add(Character()/*,BorderLayout.WEST*/,SwingConstants.CENTER);
-        add(UserInput()/*,SwingConstants.CENTER)*/);
+        add(Character(),SwingConstants.CENTER);
+        add(UserInput());
         jRadOutlander.addActionListener(
-                ae -> {
-                    if( jRadMale.isSelected())
-                    {
-                        setCharacter(Character.Outlander_Male);
-                        charSelected=Character.Outlander_Male;
-                    }
-                    if (jRadFemale.isSelected())
-                    {
-                        setCharacter(Character.Outlander_Female);
-                        charSelected=Character.Outlander_Female;
-                    }
+                ae ->{
+                    charGender = charSelected.getGender();
+                    charSelected=Character.Outlander;
+                    charSelected.setGender(charGender);
+                    setCharacter(charSelected);
                 }
         );
         jRadEmbermage.addActionListener(
                 ae -> {
-                    if( jRadMale.isSelected())
-                    {
-                        setCharacter(Character.Embermage_Male);
-                        charSelected=Character.Embermage_Male;
-                    }
-                    if (jRadFemale.isSelected())
-                    {
-                        setCharacter(Character.Embermage_Female);
-                        charSelected=Character.Embermage_Female;
-                    }
+                    charGender = charSelected.getGender();
+                    charSelected=Character.Embermage;
+                    charSelected.setGender(charGender);
+                    setCharacter(charSelected);
                 }
         );
         jRadBerserker.addActionListener(
                 ae -> {
-                    if( jRadMale.isSelected())
-                    {
-                        setCharacter(Character.Berserker_Male);
-                        charSelected=Character.Berserker_Male;
-                    }
-                    if (jRadFemale.isSelected())
-                    {
-                        setCharacter(Character.Berserker_Female);
-                        charSelected=Character.Berserker_Female;
-                    }
+                    charGender = charSelected.getGender();
+                    charSelected=Character.Berserker;
+                    charSelected.setGender(charGender);
+                    setCharacter(charSelected);
                 }
         );
         jRadEngineer.addActionListener(
                 ae -> {
-                    if( jRadMale.isSelected())
-                    {
-                        setCharacter(Character.Engineer_Male);
-                        charSelected=Character.Engineer_Male;
-                    }
-                    if (jRadFemale.isSelected())
-                    {
-                        setCharacter(Character.Engineer_Female);
-                        charSelected=Character.Engineer_Female;
-                    }
+                    charGender = charSelected.getGender();
+                    charSelected=Character.Engineer;
+                    charSelected.setGender(charGender);
+                    setCharacter(charSelected);
                 }
         );
 
         jRadMale.addActionListener(
                 ae -> {
-                    if( jRadOutlander.isSelected())
-                    {
-                        setCharacter(Character.Outlander_Male);
-                        charSelected=Character.Outlander_Male;
-                    }
-                    if (jRadEmbermage.isSelected())
-                    {
-                        setCharacter(Character.Embermage_Male);
-                        charSelected=Character.Embermage_Male;
-                    }
-                    if( jRadBerserker.isSelected())
-                    {
-                        setCharacter(Character.Berserker_Male);
-                        charSelected=Character.Berserker_Male;
-                    }
-                    if (jRadEngineer.isSelected())
-                    {
-                        setCharacter(Character.Engineer_Male);
-                        charSelected=Character.Engineer_Male;
-                    }
+                    charSelected.setGender(Character.Gender.MALE);
+                    setCharacter(charSelected);
                 }
         );
 
         jRadFemale.addActionListener(
                 ae -> {
-                    if( jRadOutlander.isSelected())
-                    {
-                        setCharacter(Character.Outlander_Female);
-                        charSelected=Character.Outlander_Female;
-                    }
-                    if (jRadEmbermage.isSelected())
-                    {
-                        setCharacter(Character.Embermage_Female);
-                        charSelected=Character.Embermage_Female;
-                    }
-                    if( jRadBerserker.isSelected())
-                    {
-                        setCharacter(Character.Berserker_Female);
-                        charSelected=Character.Berserker_Female;
-                    }
-                    if (jRadEngineer.isSelected())
-                    {
-                        setCharacter(Character.Engineer_Female);
-                        charSelected=Character.Engineer_Female;
-                    }
+                    charSelected.setGender(Character.Gender.FEMALE);
+                    setCharacter(charSelected);
                 }
         );
 
@@ -168,31 +106,12 @@ public class RegistrationForm extends JFrame {
         return jTFCharname.getText().substring(0,1).toUpperCase()+jTFCharname.getText().substring(1).toLowerCase();
     }
     private String getSelectedChar_Class()
-    {String SelectedChar_Class="";
-        if (charSelected==Character.Outlander_Male||charSelected==Character.Outlander_Female) {
-            SelectedChar_Class = "Outlander";
-        }
-        if (charSelected==Character.Embermage_Male||charSelected==Character.Embermage_Female) {
-            SelectedChar_Class = "Embermage";
-        }
-        if (charSelected==Character.Berserker_Male||charSelected==Character.Berserker_Female) {
-            SelectedChar_Class = "Berserker";
-        }
-        if (charSelected==Character.Engineer_Male||charSelected==Character.Engineer_Female) {
-            SelectedChar_Class = "Engineer";
-        }
-        return SelectedChar_Class;
+    {
+        return charSelected.toString();
     }
     private String getSelectedChar_Sex()
-    {String SelectedChar_Sex="";
-        if (charSelected==Character.Outlander_Male||charSelected==Character.Embermage_Male||charSelected==Character.Berserker_Male||charSelected==Character.Engineer_Male) {
-            SelectedChar_Sex = "Male";
-        }
-        if (charSelected==Character.Outlander_Female||charSelected==Character.Embermage_Female||charSelected==Character.Berserker_Female||charSelected==Character.Engineer_Female) {
-            SelectedChar_Sex = "Female";
-        }
-
-        return SelectedChar_Sex;
+    {
+        return  charSelected.getGender().toString();
     }
     private String getSelectedChar_Strength()
     {
@@ -214,124 +133,28 @@ public class RegistrationForm extends JFrame {
     {
         return new Color(21, 21,21,64);
     }
-    private Character charSelected;
-    private  enum Character
+
+
+    private void setCharacter(Character selected)
     {
-        Outlander_Male,
-        Outlander_Female,
-        Embermage_Male,
-        Embermage_Female,
-        Berserker_Male,
-        Berserker_Female,
-        Engineer_Male,
-        Engineer_Female;
-    }
-    private void setCharacter(/*String myChar, String mySex, */Character Selected)
-    {//iconCharacter = new ImageIcon();
-        if(/*myChar.equals("Outlander")&&mySex.equals("M")*/Selected == Character.Outlander_Male)
-        {   charSelected=Character.Outlander_Male;
-            iconCharacter = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("male_outlander.png")));
-            jLCharacter.setIcon(iconCharacter);
-            jLStrengthI.setText("200");
-            jLDexterI.setText("250");
-            jLFocusI.setText("300");
-            jLVitalI.setText("100");
-        }
-        if(/*myChar.equals("Outlander")&&mySex.equals("F")*/Selected == Character.Outlander_Female)
-        {   charSelected=Character.Outlander_Female;
-            iconCharacter = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("female_outlander.png")));
-            jLCharacter.setIcon(iconCharacter);
-            jLStrengthI.setText("200");
-            jLDexterI.setText("250");
-            jLFocusI.setText("300");
-            jLVitalI.setText("100");
-        }
-        if(/*myChar.equals("Embermage")&&mySex.equals("M")*/Selected == Character.Embermage_Male)
-        {   charSelected=Character.Embermage_Male;
-            iconCharacter = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("male_embermage.png")));
-            jLCharacter.removeAll();
-            jLCharacter.setIcon(iconCharacter);
-            jLStrengthI.setText("200");
-            jLDexterI.setText("300");
-            jLFocusI.setText("200");
-            jLVitalI.setText("150");
-        }
-        if(/*myChar.equals("Embermage")&&mySex.equals("F")*/Selected == Character.Embermage_Female)
-        {   charSelected=Character.Embermage_Female;
-            iconCharacter = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("female_embermage.png")));
-            jLCharacter.removeAll();
-            jLCharacter.setIcon(iconCharacter);
-            jLStrengthI.setText("200");
-            jLDexterI.setText("300");
-            jLFocusI.setText("200");
-            jLVitalI.setText("150");
-        }
-        if(/*myChar.equals("Berserker")&&mySex.equals("M")*/Selected == Character.Berserker_Male)
-        {   charSelected=Character.Berserker_Male;
-            iconCharacter = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("male_berserker.png")));
-            jLCharacter.removeAll();
-            jLCharacter.setIcon(iconCharacter);
-            jLStrengthI.setText("300");
-            jLDexterI.setText("200");
-            jLFocusI.setText("250");
-            jLVitalI.setText("100");
-        }
-        if(/*myChar.equals("Berserker")&&mySex.equals("F")*/Selected == Character.Berserker_Female)
-        {   charSelected=Character.Berserker_Female;
-            iconCharacter = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("female_berserker.png")));
-            jLCharacter.removeAll();
-            jLCharacter.setIcon(iconCharacter);
-            jLStrengthI.setText("300");
-            jLDexterI.setText("200");
-            jLFocusI.setText("250");
-            jLVitalI.setText("100");
-        }
-        if(/*myChar.equals("Engineer")&&mySex.equals("M")*/Selected == Character.Engineer_Male)
-        {   charSelected=Character.Engineer_Male;
-            iconCharacter = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("male_engineer.png")));
-            jLCharacter.removeAll();
-            jLCharacter.setIcon(iconCharacter);
-            jLStrengthI.setText("200");
-            jLDexterI.setText("150");
-            jLFocusI.setText("200");
-            jLVitalI.setText("300");
-        }
-        if(/*myChar.equals("Engineer")&&mySex.equals("F")*/Selected == Character.Engineer_Female)
-        {   charSelected=Character.Engineer_Female;
-            iconCharacter = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("female_engineer.png")));
-            jLCharacter.removeAll();
-            jLCharacter.setIcon(iconCharacter);
-            jLStrengthI.setText("200");
-            jLDexterI.setText("150");
-            jLFocusI.setText("200");
-            jLVitalI.setText("300");
-        }
+        selected.updateResouce();
+        iconCharacter = new ImageIcon(selected.getResource());
+        jLCharacter.setIcon(iconCharacter);
+        jLStrengthI.setText(selected.getStrength()+"");
+        jLDexterI.setText(selected.getDexterity()+"");
+        jLFocusI.setText(selected.getFocus()+"");
+        jLVitalI.setText(selected.getVitality()+"");
+
     }
     private JPanel UserInput()
     {//JPanel jPUserInput = new JPanel(new BorderLayout());
         JPanel jPUserInputMain = new JPanel(new GridLayout(4,1));
         jPUserInputMain.setOpaque(false);
         jPUserInputMain.setBackground(new Color(21,21,21,64));
-        //JPanel jPSeparator = new JPanel();
-        //jPUserInput.add(jPSeparator);
-
         jPUserInputMain.add(buttonGroupCharType());
-        //buttonGroupCharSex().setLayout(new FlowLayout(FlowLayout.LEFT));
-
         jPUserInputMain.add(buttonGroupCharSex());
-
-        //jPUserInput.add(jPSeparator);
         jPUserInputMain.add(MiniForm());
-        //PUserInput.add(jPSeparator);
         jPUserInputMain.add(UserSubmit());
-        /*JPanel jPUserSubmit = new JPanel();
-            jPUserSubmit.setOpaque(false);
-            jPUserSubmit.setBackground(colorTransparent());
-            jPUserSubmit.add(UserSubmit());*/
-
-        //jPUserInput.add(jPUserInputMain,BorderLayout.CENTER);
-        //jPUserInput.add(jPUserSubmit,BorderLayout.SOUTH);
-        //return jPUserInput;
         return jPUserInputMain;
     }
     private JCheckBox jCBUserAgree;
@@ -438,7 +261,9 @@ public class RegistrationForm extends JFrame {
 
                     int dialogResult =JOptionPane.showConfirmDialog (null, "Are you sure to cancel ?","",dialogButton, JOptionPane.INFORMATION_MESSAGE,setIconDialogMessage());
                     if(dialogResult == JOptionPane.YES_OPTION){
-                        setCharacter(Character.Outlander_Male);
+                        charSelected = Character.Outlander;
+                        charSelected.setGender(charGender = Character.Gender.MALE);
+                        setCharacter(charSelected);
                         jRadOutlander.setSelected(true);
                         jRadMale.setSelected(true);
                         jTFCharname.setText("");
@@ -451,9 +276,7 @@ public class RegistrationForm extends JFrame {
 
         jPButtonGroup.add(jBSave);
         jPButtonGroup.add(jBCancel);
-
         jPUserAgree.add(jCBUserAgree);
-
         jPUserSubmit.add(jPUserAgree);
         jPUserSubmit.add(jPButtonGroup);
         return jPUserSubmit;
@@ -480,25 +303,25 @@ public class RegistrationForm extends JFrame {
         jLCharType.setForeground(Color.WHITE);
         jLCharType.setOpaque(false);
         jLCharType.setFont(new Font("Arial", Font.BOLD, 18));
-        jRadOutlander   = new JRadioButton("Outlander",true);
+        jRadOutlander   = new JRadioButton(Character.Outlander.toString(),true);
         jRadOutlander.setBackground(colorTransparent());
         jRadOutlander.setForeground(Color.WHITE);
         jRadOutlander.setOpaque(false);
         jPCharTypePrime.add(jRadOutlander);
         bGcharacterType.add(jRadOutlander);
-        jRadEmbermage   = new JRadioButton("Embermage");
+        jRadEmbermage   = new JRadioButton(Character.Embermage.toString());
         jRadEmbermage.setBackground(colorTransparent());
         jRadEmbermage.setForeground(Color.WHITE);
         jRadEmbermage.setOpaque(false);
         jPCharTypePrime.add(jRadEmbermage);
         bGcharacterType.add(jRadEmbermage);
-        jRadBerserker   = new JRadioButton("Berserker");
+        jRadBerserker   = new JRadioButton(Character.Berserker.toString());
         jRadBerserker.setBackground(colorTransparent());
         jRadBerserker.setForeground(Color.WHITE);
         jRadBerserker.setOpaque(false);
         jPCharTypePrime.add(jRadBerserker);
         bGcharacterType.add(jRadBerserker);
-        jRadEngineer    = new JRadioButton("Engineer");
+        jRadEngineer    = new JRadioButton(Character.Engineer.toString());
         jRadEngineer.setBackground(colorTransparent());
         jRadEngineer.setForeground(Color.WHITE);
         jRadEngineer.setOpaque(false);
@@ -529,12 +352,12 @@ public class RegistrationForm extends JFrame {
         jLCharSex.setForeground(Color.WHITE);
         jLCharSex.setFont(new Font("Arial", Font.BOLD, 18));
         jLCharSex.setOpaque(false);
-        jRadMale   = new JRadioButton("Male",true);
+        jRadMale   = new JRadioButton(Character.Gender.MALE.toString(),true);
         jRadMale.setForeground(Color.WHITE);
         jRadMale.setOpaque(false);
         jPCharSexPrime.add(jRadMale);
         bGcharacterSex.add(jRadMale);
-        jRadFemale   = new JRadioButton("Female");
+        jRadFemale   = new JRadioButton(Character.Gender.FEMALE.toString());
         jRadFemale.setForeground(Color.WHITE);
         jRadFemale.setOpaque(false);
         jPCharSexPrime.add(jRadFemale);
@@ -633,7 +456,7 @@ public class RegistrationForm extends JFrame {
         jLStrength.setOpaque(false);
         jLStrength.setBackground(colorTransparent());
         jLStrength.setFont(new Font("Arial", Font.BOLD, 12));
-        jLStrengthI = new JLabel ("200" /*, SwingConstants.CENTER*/);
+        jLStrengthI = new JLabel (charSelected.getStrength()+"");
         jLStrengthI.setForeground(Color.WHITE);
         jLStrengthI.setOpaque(false);
         jLStrengthI.setBackground(colorTransparent());
@@ -662,7 +485,7 @@ public class RegistrationForm extends JFrame {
         jLDexter.setOpaque(false);
         jLDexter.setBackground(colorTransparent());
         jLDexter.setFont(new Font("Arial", Font.BOLD, 12));
-        jLDexterI = new JLabel ("250" /*, SwingConstants.CENTER*/);
+        jLDexterI = new JLabel (charSelected.getDexterity()+"");
         jLDexterI.setForeground(Color.WHITE);
         jLDexterI.setOpaque(false);
         jLDexterI.setBackground(colorTransparent());
@@ -691,7 +514,7 @@ public class RegistrationForm extends JFrame {
         jLFocus.setOpaque(false);
         jLFocus.setBackground(colorTransparent());
         jLFocus.setFont(new Font("Arial", Font.BOLD, 12));
-        jLFocusI = new JLabel ("300" /*, SwingConstants.CENTER*/);
+        jLFocusI = new JLabel (charSelected.getFocus()+"");
         jLFocusI.setForeground(Color.WHITE);
         jLFocusI.setOpaque(false);
         jLFocusI.setBackground(colorTransparent());
@@ -720,7 +543,7 @@ public class RegistrationForm extends JFrame {
         jLVital.setOpaque(false);
         jLVital.setBackground(colorTransparent());
         jLVital.setFont(new Font("Arial", Font.BOLD, 12));
-        jLVitalI = new JLabel ("100" /*, SwingConstants.CENTER*/);
+        jLVitalI = new JLabel (charSelected.getVitality()+"");
         jLVitalI.setForeground(Color.WHITE);
         jLVitalI.setOpaque(false);
         jLVitalI.setBackground(colorTransparent());

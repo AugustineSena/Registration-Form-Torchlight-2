@@ -1,27 +1,35 @@
-package sample;
+package main;
 import java.net.URL;
 public enum Character {
-    Outlander(Gender.MALE,200,250,300,100),
-    Embermage(Gender.MALE,200,300,200,150),
-    Berserker(Gender.MALE,300,200,250,100),
-    Engineer(Gender.MALE,200,150,200,300);
+    Outlander(200,250,300,100),
+    Embermage(200,300,200,150),
+    Berserker(300,200,250,100),
+    Engineer(200,150,200,300);
 
     public enum Gender{
         MALE,
         FEMALE;
+
+        @Override
+        public String toString() {
+            String base = super.toString().toLowerCase();
+            return (base.substring(0,1).toUpperCase()+base.substring(1));
+        }
     }
-    private Gender gender = Gender.FEMALE;
+    private Gender gender = Character.Gender.MALE;
     private int strength;
     private int dexterity;
     private int focus;
     private int vitality;
     private URL obj;
     Character(){
+        //
     }
     Character(Gender gender){
         this.setGender(gender);
     }
     Character(int strength, int dexterity,int focus, int vitality){
+
         this.setStrength(strength);
         this.setDexterity(dexterity);
         this.setFocus(focus);
@@ -78,7 +86,7 @@ public enum Character {
     }
     public  URL getResource() {
         if (obj == null)
-            throw new NullPointerException();
+            throw  new NullPointerException();
         return obj;
     }
     public  void setResource(String filename) {
