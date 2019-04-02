@@ -773,7 +773,7 @@ public class Register extends JFrame{
     jPVital.add(jPVitalI);
      return jPVital;
     }
-    
+
 
 
     public static void main(String[] args) {
@@ -794,8 +794,8 @@ public class Register extends JFrame{
         int x = (int) ((dimension.getWidth() - createNew.getWidth()) / 2);
         int y = (int) ((dimension.getHeight() - createNew.getHeight()) / 2);
         createNew.setLocation(x, y);
-        
-        
+
+
     }
-    
+
 }
