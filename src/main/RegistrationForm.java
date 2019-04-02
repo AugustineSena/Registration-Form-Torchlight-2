@@ -243,7 +243,7 @@ public class RegistrationForm extends JFrame {
                         String  string = "Congratulations Your Character Successfully Created !\n"+
                                 "Name========"+": "+getSelectedChar_Name()+"\n"+
                                 "Class========"+": "+getSelectedChar_Class()+"\n"+
-                                "Sex========="+": "+getSelectedChar_Sex()+"\n"+
+                                "Gender======"+": "+getSelectedChar_Sex()+"\n"+
                                 "Strength====="+": "+getSelectedChar_Strength()+"\n"+
                                 "Dexternity===="+": "+getSelectedChar_Dexternity()+"\n"+
                                 "Focus======="+": "+getSelectedChar_Focus()+"\n"+
@@ -348,7 +348,7 @@ public class RegistrationForm extends JFrame {
         jPCharSex.setBackground(colorTransparent());
         bGcharacterSex = new ButtonGroup(/*NB_ROW*/);
 
-        JLabel jLCharSex=new JLabel("================ Sex ================"/*,SwingConstants.CENTER*/);
+        JLabel jLCharSex=new JLabel("=============== Gender ==============="/*,SwingConstants.CENTER*/);
         jLCharSex.setForeground(Color.WHITE);
         jLCharSex.setFont(new Font("Arial", Font.BOLD, 18));
         jLCharSex.setOpaque(false);
