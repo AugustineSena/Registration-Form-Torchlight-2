@@ -27,8 +27,6 @@ public class RegistrationForm extends JFrame {
     /**
      * @param args the command line arguments
      */
-    //private ImageIcon titleIcon;
-    private boolean exceptionIndicator=false;
     private Character charSelected;
     private Character.Gender charGender;
     public RegistrationForm()  {
@@ -85,10 +83,8 @@ public class RegistrationForm extends JFrame {
                     setCharacter(charSelected);
                 }
         );
-
     }
-    private void setIcon()
-    {
+    private void setIcon(){
         Image titleIcon = null;
         try {
            titleIcon = read(Objects.requireNonNull(getClass().getClassLoader().getResource("icon.gif")));
@@ -97,46 +93,37 @@ public class RegistrationForm extends JFrame {
         }
         setIconImage(titleIcon);
     }
-    private Icon setIconDialogMessage()
-    {
+    private Icon setIconDialogMessage(){
         return new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("icon.gif")));
     }
-    private String getSelectedChar_Name()
-    {
+    private String getSelectedChar_Name(){
         return jTFCharname.getText().substring(0,1).toUpperCase()+jTFCharname.getText().substring(1).toLowerCase();
     }
-    private String getSelectedChar_Class()
-    {
+    private String getSelectedChar_Class(){
         return charSelected.toString();
     }
     private String getSelectedChar_Sex()
     {
         return  charSelected.getGender().toString();
     }
-    private String getSelectedChar_Strength()
-    {
+    private String getSelectedChar_Strength(){
         return jLStrengthI.getText();
     }
-    private String getSelectedChar_Dexternity()
-    {
+    private String getSelectedChar_Dexternity(){
         return jLDexterI.getText();
     }
-    private String getSelectedChar_Focus()
-    {
+    private String getSelectedChar_Focus(){
         return jLFocusI.getText();
     }
-    private String getSelectedChar_Vitality()
-    {
+    private String getSelectedChar_Vitality(){
         return jLVitalI.getText();
     }
-    private Color colorTransparent()
-    {
+    private Color colorTransparent(){
         return new Color(21, 21,21,64);
     }
 
 
-    private void setCharacter(Character selected)
-    {
+    private void setCharacter(Character selected){
         selected.updateResouce();
         iconCharacter = new ImageIcon(selected.getResource());
         jLCharacter.setIcon(iconCharacter);
@@ -146,8 +133,7 @@ public class RegistrationForm extends JFrame {
         jLVitalI.setText(selected.getVitality()+"");
 
     }
-    private JPanel UserInput()
-    {//JPanel jPUserInput = new JPanel(new BorderLayout());
+    private JPanel UserInput(){
         JPanel jPUserInputMain = new JPanel(new GridLayout(4,1));
         jPUserInputMain.setOpaque(false);
         jPUserInputMain.setBackground(new Color(21,21,21,64));
@@ -159,8 +145,8 @@ public class RegistrationForm extends JFrame {
     }
     private JCheckBox jCBUserAgree;
     private JButton jBSave;
-    private JPanel UserSubmit()
-    {JPanel jPUserSubmit = new JPanel(new GridLayout(1, 2));
+    private JPanel UserSubmit(){
+        JPanel jPUserSubmit = new JPanel(new GridLayout(1, 2));
         jPUserSubmit.setOpaque(false);
         jPUserSubmit.setBackground(colorTransparent());
         JPanel jPUserAgree = new JPanel();
@@ -175,8 +161,7 @@ public class RegistrationForm extends JFrame {
                 e -> {
                     if (jCBUserAgree.isSelected()) {
                         jBSave.setEnabled(true);
-                    }else if(!jCBUserAgree.isSelected())
-                    {
+                    }else if(!jCBUserAgree.isSelected()){
                         jBSave.setEnabled(false);
                     }
                 }
@@ -190,56 +175,31 @@ public class RegistrationForm extends JFrame {
         jBSave.setEnabled(false);
         jBSave.addActionListener(
                 ae -> {
-                    if(jTFCharname.getText().equals("")&& jTFCharemail.getText().equals(""))
-                    {
+                    if(jTFCharname.getText().equals("")&& jTFCharemail.getText().equals("")){
                         String string = "Name and E-mail must not empty";
                         JOptionPane.showMessageDialog(null,string,"",JOptionPane.INFORMATION_MESSAGE,setIconDialogMessage());
-                        exceptionIndicator=false;
-                    }
-                    else if (jTFCharname.getText().equals(""))
-                    {
+                    }else if (jTFCharname.getText().equals("")){
                         String string = "Name must not empty";
                         JOptionPane.showMessageDialog(null,string,"",JOptionPane.INFORMATION_MESSAGE,setIconDialogMessage());
-                        exceptionIndicator=false;
-                    }
-                    else if (jTFCharname.getText().substring(0, 1).matches("[0-9]"))
-                    {
+                    }else if (jTFCharname.getText().substring(0, 1).matches("[0-9]")){
                         String string = "Name cannot begin with number";
                         JOptionPane.showMessageDialog(null,string,"",JOptionPane.INFORMATION_MESSAGE,setIconDialogMessage());
-                        exceptionIndicator=false;
-                    }
-                    else if (jTFCharname.getText().contains(" "))
-                    {
+                    }else if (jTFCharname.getText().contains(" ")){
                         String string = "Name must not contain space";
                         JOptionPane.showMessageDialog(null,string,"",JOptionPane.INFORMATION_MESSAGE,setIconDialogMessage());
-                        exceptionIndicator=false;
-                    }
-                    else if (jTFCharname.getText().length()>20)
-                    {
+                    }else if (jTFCharname.getText().length()>20){
                         String string = "Name must least 20 characters";
                         JOptionPane.showMessageDialog(null,string,"",JOptionPane.INFORMATION_MESSAGE,setIconDialogMessage());
-                        exceptionIndicator=false;
-                    }
-                    else if (jTFCharemail.getText().equals(""))
-                    {
+                    }else if (jTFCharemail.getText().equals("")){
                         String string = "E-mail must not empty";
                         JOptionPane.showMessageDialog(null,string,"",JOptionPane.INFORMATION_MESSAGE,setIconDialogMessage());
-                        exceptionIndicator=false;
-                    }
-                    else if (jTFCharemail.getText().contains(" "))
-                    {
+                    }else if (jTFCharemail.getText().contains(" ")){
                         String string = "E-mail must not contain space";
                         JOptionPane.showMessageDialog(null,string,"",JOptionPane.INFORMATION_MESSAGE,setIconDialogMessage());
-                        exceptionIndicator=false;
-                    }
-                    else if (!jTFCharemail.getText().matches("^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-]+)*@"+"[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"))
-                    {
+                    }else if (!jTFCharemail.getText().matches("^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-]+)*@"+"[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")){
                         String string = "E-mail is not valid";
                         JOptionPane.showMessageDialog(null,string,"",JOptionPane.INFORMATION_MESSAGE,setIconDialogMessage());
-                        exceptionIndicator=false;
-                    }
-                    else
-                    {
+                    }else{
                         String  string = "Congratulations Your Character Successfully Created !\n"+
                                 "Name========"+": "+getSelectedChar_Name()+"\n"+
                                 "Class========"+": "+getSelectedChar_Class()+"\n"+
@@ -249,7 +209,6 @@ public class RegistrationForm extends JFrame {
                                 "Focus======="+": "+getSelectedChar_Focus()+"\n"+
                                 "Vitality======="+": "+getSelectedChar_Vitality();
                         JOptionPane.showMessageDialog(null,string,"",JOptionPane.INFORMATION_MESSAGE,setIconDialogMessage());
-                        exceptionIndicator=true;
                     }
                 }
         );
@@ -287,8 +246,8 @@ public class RegistrationForm extends JFrame {
     private JRadioButton jRadBerserker;
     private JRadioButton jRadEngineer;
 
-    private JPanel buttonGroupCharType()
-    {JPanel jPType = new JPanel(new GridLayout(2, 1,2,2));
+    private JPanel buttonGroupCharType(){
+        JPanel jPType = new JPanel(new GridLayout(2, 1,2,2));
         jPType.setOpaque(false);
         jPType.setBackground(colorTransparent());
         JPanel jPCharTypePrime= new JPanel(new GridLayout(1, 4,2,2));
@@ -337,8 +296,8 @@ public class RegistrationForm extends JFrame {
     private JRadioButton jRadMale;
     private JRadioButton jRadFemale;
 
-    private JPanel buttonGroupCharSex()
-    {JPanel jPSex = new JPanel(new GridLayout(2,1));
+    private JPanel buttonGroupCharSex(){
+        JPanel jPSex = new JPanel(new GridLayout(2,1));
         jPSex.setOpaque(false);
         JPanel jPCharSexPrime = new JPanel(new GridLayout(1,2,30,0));
         jPCharSexPrime.setOpaque(false);
@@ -372,15 +331,13 @@ public class RegistrationForm extends JFrame {
     private JLabel jLCharemail ;
     private JTextField jTFCharemail;
 
-    private JPanel MiniForm()
-    {   //JPanel jPMiniForm = new JPanel(new FlowLayout(FlowLayout.LEFT));
+    private JPanel MiniForm(){
         JPanel jPMiniFormPrime = new JPanel(new GridLayout(2, 1,1,1));
         jPMiniFormPrime.setOpaque(false);
         jPMiniFormPrime.setBackground(colorTransparent());
         JPanel jPCharname = new JPanel(/*new GridLayout(1, 2,10,10)*/new FlowLayout(FlowLayout.LEFT));
         jPCharname.setOpaque(false);
         jPCharname.setBackground(colorTransparent());
-        //jPCharname.setLayout(new FlowLayout(FlowLayout.CENTER));
         jLCharname = new JLabel("Name    : ",SwingConstants.RIGHT);
         jLCharname.setForeground(Color.WHITE);
         jTFCharname = new JTextField(20);
@@ -388,10 +345,9 @@ public class RegistrationForm extends JFrame {
         jPCharname.add(jLCharname);
         jPCharname.add(jTFCharname);
 
-        JPanel jPCharemail = new JPanel(/*new GridLayout(1,2,10,10)*/new FlowLayout(FlowLayout.LEFT));
+        JPanel jPCharemail = new JPanel(new FlowLayout(FlowLayout.LEFT));
         jPCharemail.setOpaque(false);
         jPCharemail.setBackground(colorTransparent());
-        //jPCharpass.setLayout(new FlowLayout(FlowLayout.CENTER));
         jLCharemail = new JLabel("E-mail   : ",SwingConstants.RIGHT);
         jLCharemail.setForeground(Color.WHITE);
         jTFCharemail = new JTextField();
@@ -400,11 +356,9 @@ public class RegistrationForm extends JFrame {
         jPCharemail.add(jTFCharemail);
         jPMiniFormPrime.add(jPCharname);
         jPMiniFormPrime.add(jPCharemail);
-        //jPMiniForm.add(jPMiniFormPrime);
         return jPMiniFormPrime;
     }
-    private JPanel Character ()
-    {
+    private JPanel Character (){
         JPanel jPCharacter = new JPanel();
         jPCharacter.setOpaque(false);
         jPCharacter.setBackground(colorTransparent());
@@ -415,8 +369,8 @@ public class RegistrationForm extends JFrame {
     }
     private Icon iconCharacter;
     private JLabel jLCharacter;
-    private JPanel characterChar()
-    {JPanel jPCharacter = new JPanel();
+    private JPanel characterChar(){
+        JPanel jPCharacter = new JPanel();
         jPCharacter.setOpaque(false);
         jPCharacter.setBackground(colorTransparent());
         jLCharacter = new JLabel();
@@ -428,9 +382,8 @@ public class RegistrationForm extends JFrame {
         jPCharacter.add(jLCharacter);
         return jPCharacter;
     }
-    private JPanel attributeChar()
-    {JPanel jPAttribute = new JPanel(new GridLayout(4,1));
-
+    private JPanel attributeChar(){
+        JPanel jPAttribute = new JPanel(new GridLayout(4,1));
         jPAttribute.add(attributeStr());
         jPAttribute.add(attributeDxt());
         jPAttribute.add(attributeFcs());
@@ -440,8 +393,8 @@ public class RegistrationForm extends JFrame {
         return jPAttribute;
     }
     private JLabel jLStrengthI;
-    private JPanel attributeStr()
-    {JPanel jPStrength = new JPanel(new GridLayout(1,2));
+    private JPanel attributeStr(){
+        JPanel jPStrength = new JPanel(new GridLayout(1,2));
         jPStrength.setOpaque(false);
         jPStrength.setBackground(colorTransparent());
         JLabel liconStrength = new JLabel();
@@ -469,8 +422,8 @@ public class RegistrationForm extends JFrame {
         return jPStrength;
     }
     private JLabel jLDexterI;
-    private JPanel attributeDxt()
-    {JPanel jPDexter = new JPanel(new GridLayout(1,2));
+    private JPanel attributeDxt(){
+        JPanel jPDexter = new JPanel(new GridLayout(1,2));
         jPDexter.setOpaque(false);
         jPDexter.setBackground(colorTransparent());
         JLabel liconDexter = new JLabel();
@@ -498,8 +451,8 @@ public class RegistrationForm extends JFrame {
         return jPDexter;
     }
     private JLabel jLFocusI;
-    private JPanel attributeFcs()
-    {JPanel jPFocus = new JPanel(new GridLayout(1,2));
+    private JPanel attributeFcs(){
+        JPanel jPFocus = new JPanel(new GridLayout(1,2));
         jPFocus.setOpaque(false);
         jPFocus.setBackground(colorTransparent());
         JLabel liconFocus = new JLabel();
@@ -527,8 +480,8 @@ public class RegistrationForm extends JFrame {
         return jPFocus;
     }
     private JLabel jLVitalI;
-    private JPanel attributeVtl()
-    {JPanel jPVital = new JPanel(new GridLayout(1,2));
+    private JPanel attributeVtl(){
+        JPanel jPVital = new JPanel(new GridLayout(1,2));
         jPVital.setOpaque(false);
         jPVital.setBackground(colorTransparent());
         JLabel liconVital = new JLabel();

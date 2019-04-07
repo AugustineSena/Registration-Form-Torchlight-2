@@ -1,5 +1,10 @@
 package main;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.stream.Stream;
+
 public enum Character {
     Outlander(200,250,300,100),
     Embermage(200,300,200,150),
@@ -29,7 +34,6 @@ public enum Character {
         this.setGender(gender);
     }
     Character(int strength, int dexterity,int focus, int vitality){
-
         this.setStrength(strength);
         this.setDexterity(dexterity);
         this.setFocus(focus);
@@ -37,11 +41,8 @@ public enum Character {
         updateResouce();
     }
     Character(Gender gender,int strength, int dexterity,int focus, int vitality){
-        this.setGender(gender);
-        this.setStrength(strength);
-        this.setDexterity(dexterity);
-        this.setFocus(focus);
-        this.setVitality(vitality);
+        this(strength,dexterity,focus,vitality);
+        setGender(gender);
         updateResouce();
     }
     public Gender getGender() {
@@ -93,6 +94,15 @@ public enum Character {
         obj = getClass().getClassLoader().getResource(filename);
         if (obj == null)
             throw new NullPointerException("Filename not found in directory"+getClass().getClassLoader().getResource(""));
+    }
+    public static EnumSet<Character> getSet(){
+        return EnumSet.allOf(Character.class);
+    }
+    public  static List<Character> getList(){
+        return Arrays.asList(Character.values());
+    }
+    public static Stream<Character> stream() {
+        return Stream.of(Character.values());
     }
     public void updateResouce(){
         if(this == Character.Outlander){
